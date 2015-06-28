@@ -1,0 +1,11 @@
+<phpunit bootstrap="../../vendor/autoload.php" colors="true">
+    <testsuites>
+        <testsuite name="test_generator">
+            <file>Test_Generator_S.php</file>
+            <file>Test_Generator_O.php</file>
+            <file>Test_Generator_L.php</file>
+            <file>Test_Generator_I.php</file>
+            <file>Test_Generator_D.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>

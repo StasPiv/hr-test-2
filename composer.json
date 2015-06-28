@@ -1,0 +1,20 @@
+{
+  "name": "opsway/php-test-2",
+  "description": "HR PHP test 2",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "OpsWay",
+      "email": "support@opsway.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "OpsWay\\Test2\\": "src/"
+    }
+  }
+}

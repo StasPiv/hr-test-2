@@ -1,0 +1,11 @@
+<phpunit bootstrap="../../vendor/autoload.php" colors="true">
+    <testsuites>
+        <testsuite name="test_checker">
+            <file>Test_Checker_S.php</file>
+            <file>Test_Checker_O.php</file>
+            <file>Test_Checker_L.php</file>
+            <file>Test_Checker_I.php</file>
+            <file>Test_Checker_D.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>
