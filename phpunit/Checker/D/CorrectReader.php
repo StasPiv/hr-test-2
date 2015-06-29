@@ -12,7 +12,7 @@ class CorrectReader implements IReader
 
     public function read()
     {
-        if (!isset($this->result)) {
+        if (isset($this->result)) {
             return $this->result;
         }
 
