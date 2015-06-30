@@ -1,0 +1,9 @@
+<?php
+
+class LChild extends LParent
+{
+    public function beautyPlus($a, $b)
+    {
+        echo "Your answer: " . $this->plus($a, $b);
+    }
+}
