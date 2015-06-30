@@ -38,4 +38,3 @@ vendor/*
 !vendor/README.md
 # This is temporary
 composer.lock
-test/tmp

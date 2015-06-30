@@ -7,16 +7,11 @@ class Test_Checker_S extends PHPUnit_Framework_TestCase
         /** @var OpsWay\Test2\Solid\S $checker */
         $checker = OpsWay\Test2\Solid\Factory::create('s');
 
-        if (file_exists($checker->getGodClassFileName())) {
-            include_once $checker->getGodClassFileName();
-            $godClass = new ReflectionClass('God');
-            $this->assertEquals(0, count($godClass->getMethods()), 'Too much methods in God Class');
-        }
-
+        $this->assertFileNotExists($checker->getGodClassFileName());
         include_once $checker->getGodClassFileTmpName();
 
         $allPhpFileNames = glob(dirname($checker->getGodClassFileName()) . '/*.php');
-        $this->assertEquals(3, count($allPhpFileNames), 'Incorrect file names in folder');
+        $this->assertEquals(2, count($allPhpFileNames), 'Incorrect file names in folder');
 
         $actualFileNames = [];
         foreach ($allPhpFileNames as $fileName) {
@@ -57,25 +52,6 @@ class Test_Checker_S extends PHPUnit_Framework_TestCase
                 'Incorrect usage for ' . $class . '::' . $expectedMethod
             );
         }
-    }
-
-    /**
-     * @param ReflectionMethod[] $methods
-     * @return array
-     */
-    private function getExpectedFileNames($methods)
-    {
-        $fileNames = [];
-
-        foreach ($methods as $method) {
-            $fileName = $this->explodeCamel($method->getName())[1] . '.php';
-            if (!in_array($fileName, $fileNames)) {
-                $fileNames[] = $fileName;
-            }
-        }
-
-        sort($fileNames);
-        return array_unique(array_values($fileNames));
     }
 
     /**

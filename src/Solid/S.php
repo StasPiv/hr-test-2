@@ -103,9 +103,9 @@ class God
 
     public function printQuestion()
     {
-        return "\033[1mStep 1\033[0m. Go to " . $this->getBaseDirectory() . "/God.php, remove all methods from God class" . PHP_EOL .
+        return "\033[1mStep 1\033[0m. Go to " . $this->getBaseDirectory() . "/God.php, remove God class" . PHP_EOL .
         "\033[1mStep 2\033[0m. Choose correct name for new filenames and new classes." . PHP_EOL.
-        "\033[1mStep 3\033[0m. Create new one (or more classes) in " . $this->getBaseDirectory() . " folder to implement S-principe. Put removed methods from step 1 into them. Rename these methods in new classes. Be careful. ClassName is noun, MethodName is laconic verb." . PHP_EOL .
+        "\033[1mStep 3\033[0m. Create new one (or more classes) with method from removed God class in " . $this->getBaseDirectory() . " folder to implement S-principe. Put removed methods from step 1 into them. Rename these methods in new classes. Be careful. ClassName is noun, MethodName is laconic verb." . PHP_EOL .
         "\033[1mStep 4\033[0m. Go to phpunit/Checker directory and run \033[1mphpunit Test_Checker_S.php\033[0m" . PHP_EOL;
     }
 
