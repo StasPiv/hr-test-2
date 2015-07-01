@@ -17,9 +17,10 @@ class Test_Checker_S extends PHPUnit_Framework_TestCase
         $this->assertFileExists($file = __DIR__ . '/../../test/S/Factory.php');
         require_once $file;
 
-        $god = new ReflectionClass('Factory');
+        $factory = new ReflectionClass('Factory');
 
-        $this->assertNotFalse($god->getMethod('create')->getName());
+        $this->assertNotFalse($factory->getMethod('create')->getName());
+        $this->assertEquals(1, count($factory->getMethods()));
     }
 
     public function testReader()
@@ -28,9 +29,10 @@ class Test_Checker_S extends PHPUnit_Framework_TestCase
         $this->assertFileExists($file = __DIR__ . '/../../test/S/Reader.php');
         require_once $file;
 
-        $god = new ReflectionClass('Reader');
+        $reader = new ReflectionClass('Reader');
 
-        $this->assertNotFalse($god->getMethod('read')->getName());
+        $this->assertNotFalse($reader->getMethod('read')->getName());
+        $this->assertEquals(1, count($reader->getMethods()));
     }
 
     public function testWriter()
@@ -39,9 +41,10 @@ class Test_Checker_S extends PHPUnit_Framework_TestCase
         $this->assertFileExists($file = __DIR__ . '/../../test/S/Writer.php');
         require_once $file;
 
-        $god = new ReflectionClass('Writer');
+        $writer = new ReflectionClass('Writer');
 
-        $this->assertNotFalse($god->getMethod('write')->getName());
+        $this->assertNotFalse($writer->getMethod('write')->getName());
+        $this->assertEquals(1, count($writer->getMethods()));
     }
 
     /**
