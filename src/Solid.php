@@ -18,6 +18,11 @@ abstract class Solid
      */
     abstract protected function getBaseDirectory();
 
+    public function getFullBaseDirectory()
+    {
+        return __DIR__ . '/../' . $this->getBaseDirectory();
+    }
+
     public function generate()
     {
         $this->createDirectoryForTask();

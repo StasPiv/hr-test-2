@@ -8,56 +8,54 @@
 
 class Test_Generator_S extends PHPUnit_Framework_TestCase
 {
-    public function testGenerator()
-    {
-        /** @var OpsWay\Test2\Solid\S $generator */
-        $generator = OpsWay\Test2\Solid\Factory::create('s');
 
-        for($i=0; $i<20; $i++) {
-            $generator->generate();
-            $this->checkIfMethodsAreUnique($generator->getGodMethodNames());
-            $this->checkIfTwoClassesExist($generator->getGodMethodNames());
-            $this->checkIfFileWithGodClassCreated($generator->getGodClassFileName());
-        }
+    /** @var OpsWay\Test2\Solid\S $generator */
+    private $generator;
+
+    public function setUp()
+    {
+        $this->generator = OpsWay\Test2\Solid\Factory::create('s');
+        $this->generator->generate();
+
+    }
+
+    public function testGod()
+    {
+        $this->checkIfFileClassCreated('God.php', 'God');
+        $this->assertFileExists($file = __DIR__ . '/../../test/S/God.php');
+        require_once $file;
+
+        $god = new ReflectionClass('God');
+
+        $this->assertNotFalse($god->getMethod('create')->getName());
+        $this->assertNotFalse($god->getMethod('write')->getName());
+        $this->assertNotFalse($god->getMethod('read')->getName());
+    }
+
+    public function testReader()
+    {
+        $this->checkIfFileClassCreated('Reader.php', 'Reader');
+    }
+
+    public function testWriter()
+    {
+        $this->checkIfFileClassCreated('Writer.php', 'Writer');
+    }
+
+    public function testFactory()
+    {
+        $this->checkIfFileClassCreated('Factory.php', 'Factory');
     }
 
     /**
      * @param string $fileName
      */
-    private function checkIfFileWithGodClassCreated($fileName)
+    private function checkIfFileClassCreated($fileName, $className)
     {
+        $fileName = $this->generator->getFullBaseDirectory() . '/' . $fileName;
         $this->assertFileExists($fileName);
-    }
+        include_once $fileName;
 
-    /**
-     * @param array $methodNames
-     */
-    private function checkIfTwoClassesExist($methodNames)
-    {
-        $classNames = [];
-
-        foreach ($methodNames as $name) {
-            $classNames[] = $this->explodeCamel($name)[1];
-        }
-
-        $this->assertEquals(2, count(array_unique($classNames)));
-    }
-
-    /**
-     * @param string $str
-     * @return $matches
-     */
-    private function explodeCamel($str)
-    {
-        preg_match_all('/((?:^|[A-Z])[a-z]+)/', $str, $matches);
-        return $matches[0];
-    }
-
-    /**
-     * @param array $methods
-     */
-    private function checkIfMethodsAreUnique($methods)
-    {
-        $this->assertEquals($methods, array_unique($methods));
+        $this->assertTrue(class_exists($className), $className . ' is not exists');
     }
 }
